@@ -6,7 +6,7 @@ package domain
 // - Жанр
 // - Код ISBN
 type Book struct {
-	Id       string `json:"id"`
+	Id       string `json:"id" gorm:"primary_key"`
 	Name     string `json:"name"`
 	Genre    string `json:"genre"`
 	ISBN     string `json:"ISBN"`

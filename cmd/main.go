@@ -7,5 +7,10 @@ import (
 
 func main() {
 	repo := repository.NewRepo()
-	fmt.Println(repo)
+	//repo.CreateBook("zxczxc", domain.Book{"qweqweqwe", "qweasdzxc", "strong", "234-34123-435-123", "qweqwe", domain.Author{}})
+	res, err := repo.GetAuthorBooks("qweqwe")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(res)
 }

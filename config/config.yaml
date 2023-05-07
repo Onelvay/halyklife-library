@@ -1,0 +1,6 @@
+db:
+  host: "localhost"
+  user: "postgres"
+  dbname: "library"
+  port: "5432"
+  pass : "Adg12332,"

@@ -11,7 +11,7 @@ type Config struct {
 }
 
 func getConfig() Config {
-	viper.AddConfigPath("../config")
+	viper.AddConfigPath("../../config")
 	viper.SetConfigName("config")
 	if viper.ReadInConfig() != nil {
 		panic(viper.ReadInConfig())

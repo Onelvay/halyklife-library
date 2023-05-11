@@ -5,14 +5,22 @@ import (
 	"github.com/Onelvay/halyklife-library/pkg/domain"
 	"io/ioutil"
 	"net/http"
+	"sort"
 )
 
 func (h *Handler) GetBooks(w http.ResponseWriter, r *http.Request) {
+	querySort := r.URL.Query().Get("sort")
 	books, err := h.repo.GetBooks()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	if querySort == "price" {
+		sort.Slice(books, func(i, j int) bool {
+			return books[i].Price > books[j].Price
+		})
+	}
+
 	js, err := json.Marshal(books)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

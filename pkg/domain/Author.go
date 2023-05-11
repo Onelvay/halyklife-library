@@ -10,4 +10,5 @@ type Author struct {
 	Username       string `json:"username"`
 	Specialization string `json:"specialization"`
 	FullName       string `json:"full_name"`
+	Password       string `json:"password"`
 }

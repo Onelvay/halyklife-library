@@ -19,8 +19,13 @@ func (repo *Repo) GetAuthorBooks(authorId string) ([]domain.Book, error) { // с
 func (repo *Repo) CreateAuthor(a domain.Author) error {
 	id := uuid.New().String()
 	res := repo.db.Create(&domain.Author{
-		id, a.Username, a.Specialization, a.FullName,
+		id, a.Username, a.Specialization, a.FullName, a.Password,
 	})
+	return res.Error
+}
+func (repo *Repo) SignIn(username, password string) error {
+	var author domain.Author
+	res := repo.db.Table("authors").Where("username = ? and password = ?", username, password).Scan(&author)
 	return res.Error
 }
 

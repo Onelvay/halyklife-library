@@ -50,13 +50,15 @@ func (h *Handler) AddBookToMember(w http.ResponseWriter, r *http.Request) {
 	var req struct {
 		MemberId string `json:"member_id"`
 		BookId   string `json:"book_id"`
+		Rating   int    `json:"rating"`
+		Comment  string `json:"comment"`
 	}
 	err = json.Unmarshal(bytes, &req)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	err = h.repo.AddBookToMember(req.BookId, req.MemberId)
+	err = h.repo.AddBookToMember(req.BookId, req.MemberId, req.Rating, req.Comment)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

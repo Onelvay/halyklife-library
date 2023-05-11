@@ -13,6 +13,8 @@ type (
 		Id       string `gorm:"primary_key"`
 		MemberId string
 		BookId   string
+		Rating   int
+		Comment  string
 		Member   Member `gorm:"references:Id"`
 		Book     Book   `gorm:"references:Id"`
 	}

@@ -18,11 +18,15 @@ func InitRoutes(repo *repository.Repo) *mux.Router {
 	handlers := newHandler(repo)
 
 	router := mux.NewRouter().StrictSlash(true)
+	auth := router.PathPrefix("/auth").Subrouter()
+	{
+		auth.HandleFunc("/sign-up", handlers.SignUp).Methods("POST")
+		auth.HandleFunc("/sign-in", handlers.SignIn).Methods("POST")
+	}
 
 	authors := router.PathPrefix("/authors").Subrouter()
 	{
 		authors.HandleFunc("", handlers.GetAuthors).Methods("GET")
-		authors.HandleFunc("", handlers.CreateAuthor).Methods("POST")
 		authors.HandleFunc("/{id}/books", handlers.GetAuthorBooks).Methods("GET")
 	}
 	member := router.PathPrefix("/members").Subrouter()

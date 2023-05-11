@@ -1,6 +1,6 @@
 db:
-  host: "postgres"
+  host: "localhost"
   user: "postgres"
-  dbname: "postgres"
+  dbname: "test"
   port: "5432"
   pass : "Adg12332,"

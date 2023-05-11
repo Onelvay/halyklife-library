@@ -23,9 +23,9 @@ func (repo *Repo) CreateMember(a domain.Member) error {
 	})
 	return res.Error
 }
-func (repo *Repo) AddBookToMember(bookId, memberId string) error {
+func (repo *Repo) AddBookToMember(bookId, memberId string, rating int, comment string) error {
 	id := uuid.New().String()
-	res := repo.db.Create(&domain.Purchase{id, memberId, bookId, domain.Member{}, domain.Book{}})
+	res := repo.db.Create(&domain.Purchase{id, memberId, bookId, rating, comment, domain.Member{}, domain.Book{}})
 	return res.Error
 }
 func (repo *Repo) GetMembers() ([]domain.Member, error) { // - /members
